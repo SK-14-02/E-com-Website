@@ -16,7 +16,6 @@ export const NavBar = () => {
 
   const onLogoutHandler = () => {
     AuthCtx.setIsLoggedIn(false);
-    navigate('/');
   };
 
   return (
@@ -66,32 +65,59 @@ export const NavBar = () => {
                 </ul>
               </li>
             ) : (
-              <>
-                <li>
-                  <Link className="nav-link active" to="/add">
-                    ADD Course
+              <ul class="navbar-nav">
+                <li className="nav-item dropdown">
+                  <Link
+                    className="nav-link dropdown-toggle"
+                    to="#"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="true"
+                  >
+                    Manage
                   </Link>
+                  <ul className="dropdown-menu">
+                    <li>
+                      <Link className="dropdown-item" to="/add">
+                        Add
+                      </Link>
+                    </li>
+                    <li>
+                      <hr className="dropdown-divider" />
+                    </li>
+                    <li>
+                      <Link className="dropdown-item" to="#">
+                        Delete
+                      </Link>
+                    </li>
+                    <li>
+                      <hr className="dropdown-divider" />
+                    </li>
+                    <li>
+                      <Link className="dropdown-item" to="#">
+                        Update
+                      </Link>
+                    </li>
+                  </ul>
                 </li>
-                <li>
-                  <a className="nav-link" role="button" onClick={onLogoutHandler}>
-                    Logout
-                  </a>
+                <li class="nav-item">
+                  <Link class="nav-link active" aria-current="page" onClick={onLogoutHandler} to="/">Logout</Link>
                 </li>
-              </>
+              </ul>
             )}
           </ul>
           <div className="p-4">
             <div className="row">
-              <div className="col-md-10 fs-6 cart-box text-center">{NoItems}</div>
-              <div className="md-8">
-                <Link to="/cart">
+              <Link to="/cart">
+                <div className="col-md-10 fs-6 cart-box text-center">
                   <img
                     src="https://www.pngitem.com/pimgs/m/558-5580253_add-cart-add-to-cart-icon-png-transparent.png"
                     alt="Cart"
                     className="cart-img"
                   />
-                </Link>
-              </div>
+                  {NoItems}
+                </div>
+              </Link>
             </div>
           </div>
         </div>
