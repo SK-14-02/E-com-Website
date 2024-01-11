@@ -22,7 +22,7 @@ export const NavBar = () => {
     <nav className="navbar navbar-expand-lg bg-light">
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">
-          COURSEKART
+          COURSECART
         </Link>
         <button
           className="navbar-toggler"
