@@ -1,4 +1,4 @@
-.form-container{
+/* .form-container{
     width: 30%;
     background-color: #f6f6f6;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -39,5 +39,53 @@ input[type="text"]{
   .add_course{
     background-color: #3c4fe0;
     box-shadow: #3c4fe0 0 0 0 1.5px;
+  }
+   */
+   /* form.css */
+
+.form-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    background-color: #fff;
+  }
+  
+  .form-container h1 {
+    text-align: center;
+    color: #333;
+  }
+  
+  .form-input {
+    margin-bottom: 20px;
+  }
+  
+  .form-input input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  .error {
+    color: #bd0505;
+    margin-bottom: 20px;
+  }
+  
+  .add_course {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .add_course:hover {
+    background-color: #0056b3;
   }
   

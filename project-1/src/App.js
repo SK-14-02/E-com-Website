@@ -11,9 +11,12 @@ import  Cart from './components/cart/Cart';
 import { NavBar } from './components/navbar/navBar';
 import { AuthState } from './store/AuthState';
 import { ProtectRoute } from './components/login/ProtectRoute';
+import CourseDeleteForm from './components/courseForm/DeleteCourse';
+import axios from 'axios';
 
 function App() {
-  const [courses, setCourse] = useState([]);
+  const [courses, setCourses] = useState([]);
+
   const addCourseHandler = (course) => {
     const courseObj = {
       course_name: course.courseName,
@@ -21,17 +24,26 @@ function App() {
       course_image: course.courseImage,
       course_provider: course.courseProvider
     }
-    setCourse([...courses, courseObj]);
+    setCourses([...courses, courseObj]);
   }
+
+  const deleteCourseHandler = async (courseName) => {
+        setCourses((prevCourses) => prevCourses.filter((course) => course.course_name!== courseName));
+  };
+
   useEffect(() => {
     getCourses();
   }, [])
+
   const getCourses = async () => {
-    const data = await fetch("http://localhost:4000/");
-    const course_data = await data.json();
-    // console.log(course_data);
-    setCourse([...courses, ...course_data.courses]);
+    try {
+      const response = await axios.get("http://localhost:4000/");
+      setCourses(response.data.courses);
+    } catch (error) {
+      console.error("Error fetching courses:", error);
+    }
   }
+
   return (
     <div className="App">
       <CartState>
@@ -53,6 +65,10 @@ function App() {
               <Route path="/add" element={
                 <><h1>Add NEW COURSE</h1>
                   <CourseForm onCourseAdded={addCourseHandler} /></>
+              } />
+              <Route path="/delete" element={
+                <><h1>Delete COURSE</h1>
+                  <CourseDeleteForm onCourseDelete={deleteCourseHandler} /></>
               } />
             </Route>
             <Route path='/cart' element={<Cart />} />

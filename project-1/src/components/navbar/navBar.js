@@ -86,7 +86,7 @@ export const NavBar = () => {
                       <hr className="dropdown-divider" />
                     </li>
                     <li>
-                      <Link className="dropdown-item" to="#">
+                      <Link className="dropdown-item" to="/delete">
                         Delete
                       </Link>
                     </li>

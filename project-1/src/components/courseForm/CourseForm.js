@@ -66,12 +66,12 @@ export const CourseForm = (props) => {
         const course = {
             course_name: formData.courseName,
             course_image: formData.courseImage,
-            course_price: formData.coursePrice, 
+            course_price: formData.coursePrice,
             course_provider: formData.courseProvider
         }
-        const message = await axios.post("http://localhost:4000/add",course,{
-            headers:{
-                'Content-Type':'application/json'
+        const message = await axios.post("http://localhost:4000/add", course, {
+            headers: {
+                'Content-Type': 'application/json'
             }
         })
     }

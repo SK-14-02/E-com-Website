@@ -70,18 +70,30 @@ router.get('/:name', async (req, res) => {
         })
     }
 })
-router.delete("/delete/:id",async(req,res)=>{
-    try{
-       await Course.findByIdAndDelete(req.params.id);
-       return res.status(200).json({
-         message:"Data deleted",
-        
-       })
-    }catch(err){
+
+
+router.delete("/delete", async (req, res) => {
+    try {
+        const cname = req.body.course_name;
+        const deletedCourse = await Course.findOneAndDelete({course_name: cname});
+
+        if (!deletedCourse) {
+            return res.status(404).json({
+                message: "Course not found"
+            });
+        }
+
+        return res.status(200).json({
+            message: "Data deleted",
+            data: deletedCourse
+        });
+    } catch (err) {
+        console.error(err);
         return res.status(500).json({
-            message:"something went wrong",
-            error:err.message
-        })
+            message: "Error",
+            error: err.message
+        });
     }
-})
+});
+
 module.exports = router;
